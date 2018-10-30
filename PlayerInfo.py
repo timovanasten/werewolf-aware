@@ -69,6 +69,3 @@ class PlayerInfo:
             else:
                 killed[game - 1].append(int(row[9]))
         return killed
-
-
-print(PlayerInfo().get_killed_players(2, 4))
