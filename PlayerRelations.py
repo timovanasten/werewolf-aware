@@ -8,10 +8,15 @@ class PlayerRelations:
         self.role_matrices = self.__generate_matrix()
 
     # Generates a pair with the relation of player1 to player2
-    # e.g. ("wolf","villager") if player 1 is a wolf an player 2 is a villager
-    def generate_label(self, game_id, player1, player2):
+    # e.g. ["w","v"] if player 1 is a wolf an player 2 is a villager
+    def generate_label_2player(self, game_id, player_id_1, player_id_2):
         role_matrix = self.__generate_matrix()[game_id - 1]
-        return role_matrix[player1 - 1, player2 - 1]
+        return role_matrix[player_id_1 - 1, player_id_2 - 1]
+
+    # Retrieves the role of a certain player during the game. Returns 'w' for wolf and 'v' for villager
+    def generate_label_1player(self, game_id, player_id):
+        role_matrix = self.__generate_matrix()[game_id - 1]
+        return role_matrix[player_id - 1, 0][0]
 
     def __generate_matrix(self):
         role_matrices = []
@@ -46,5 +51,3 @@ class PlayerRelations:
                     wolves[game - 1] = (int(row[7]), int(row[8]))
                     continue
         return wolves
-
-
